@@ -1,0 +1,22 @@
+{
+  "name": "todolist-vanilla",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "serve": "live-server --port=5000 --verbose"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isOmarDev/todoList-vanilla-js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/isOmarDev/todoList-vanilla-js/issues"
+  },
+  "homepage": "https://github.com/isOmarDev/todoList-vanilla-js#readme",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
