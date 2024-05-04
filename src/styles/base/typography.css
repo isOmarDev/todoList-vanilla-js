@@ -1,0 +1,11 @@
+body {
+  color: var(--font-color);
+}
+
+body, h1, h2, h3, h4, h5, h6, p, button {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+input {
+  color: var(--font-color);
+}

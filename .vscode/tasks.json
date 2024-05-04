@@ -1,0 +1,13 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "live server",
+      "type": "shell",
+      "command": "npm run serve",
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    }
+  ]
+}

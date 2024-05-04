@@ -1,0 +1,26 @@
+/* Task Item */
+.tasks__list-item {
+  background-color: var(--secondary-color);
+  border-radius: 7px;
+  transition: background-color 150ms ease-in-out;
+}
+
+.tasks__list-item:hover {
+  background-color: var(--hover-color);
+}
+
+/* Task Input Label */
+.tasks__list-label {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 20px 15px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Task Checkbox */
+input[type="checkbox"].tasks__list-checkbox {
+  margin-right: 20px;
+}

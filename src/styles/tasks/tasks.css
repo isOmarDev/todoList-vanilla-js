@@ -1,0 +1,33 @@
+/* Tasks Section */
+.tasks__section {
+  margin-top: 30px;
+}
+
+/* Tasks Section Header */
+.tasks__section-header {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+
+/* Tasks Section Title */
+.tasks__section-title {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+/* Tasks Count */
+.tasks__count {
+  margin-left: 10px;
+  font-size: 14px;
+  font-weight: 300;
+  color: grey;
+}
+
+/* Tasks List */
+.tasks__list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+  margin-top: 20px;
+}

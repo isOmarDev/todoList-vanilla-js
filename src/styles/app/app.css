@@ -1,0 +1,17 @@
+/* App */
+.app {
+  margin: 0 auto;
+  padding: 50px;
+  max-width: 900px;
+}
+
+/* Header Title */
+.header__title {
+  margin-top: 5px;
+  font-weight: 800;
+}
+
+/* Main */
+.main {
+  margin-top: 30px;
+}
