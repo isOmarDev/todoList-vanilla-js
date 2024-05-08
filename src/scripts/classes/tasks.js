@@ -1,57 +1,57 @@
-import {
-  createLiElement,
-  createLabelElement,
-  createInputElement,
-} from "../components/task.js";
-
 class Tasks {
-  constructor() {
-    this.tasks = [
-      { id: 1, description: "Finish home work" },
-      { id: 2, description: "Go to gym" },
-      { id: 3, description: "Warzone with the homies" },
-    ];
+  constructor(intialTasks) {
+    this.tasks = intialTasks ?? [];
   }
 
-  get() {
+  getAll() {
     return this.tasks;
   }
 
+  getActive() {
+    return this.tasks.filter(task => !task.completed);
+  }
+
+  getCompleted() {
+    return this.tasks.filter(task => task.completed);
+  }
+
+  getCount(status = null) {
+    switch (status) {
+      case "active": {
+        return this.tasks.filter((task) => !task.completed).length;
+      }
+      case "completed": {
+        return this.tasks.filter((task) => task.completed).length;
+      }
+      default: {
+        return this.tasks.length;
+      }
+    }
+  }
+  
   add(task) {
-    this.tasks.push(task);
+    this.tasks.unshift(task);
+    this.saveToLocalStorage();
   }
 
   update(taskId, description) {
-    const taskIndex = this.tasks.findIndex((item) => item.id === taskId);
-    if (taskIndex !== -1) {
-      this.tasks[taskIndex].description = description;
+    const task = this.tasks.find(task => task.id === taskId);
+    if (task) {
+      task.description = description;
+      this.saveToLocalStorage();
     }
   }
 
   remove(taskId) {
     this.tasks = this.tasks.filter((task) => task.id !== taskId);
+    this.saveToLocalStorage();
   }
 
-  render() {
-    const listElement = document.getElementById("active-tasks-list");
-    const fragment = document.createDocumentFragment();
-
-    this.tasks.forEach((item) => {
-      const liElement = createLiElement(item.id);
-      const labelElement = createLabelElement(item.description);
-      const inputElement = createInputElement();
-
-      liElement.appendChild(labelElement).appendChild(inputElement);
-      fragment.appendChild(liElement);
-    });
-
-    // Append the <li> element to the <ul> element
-    listElement.appendChild(fragment);
+  saveToLocalStorage() {
+    localStorage.setItem("tasks", JSON.stringify(this.tasks));
   }
 }
 
 // Create tasks instance
-export const tasks = new Tasks();
-
-// Render tasks on load
-document.addEventListener("DOMContentLoaded", () => tasks.render());
+const intialTasks = JSON.parse(localStorage.getItem("tasks"));
+export const tasks = new Tasks(intialTasks);

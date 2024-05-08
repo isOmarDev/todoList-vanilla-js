@@ -1,5 +1,7 @@
 /* Task Item */
 .tasks__list-item {
+  display: flex;
+  align-items: center;
   background-color: var(--secondary-color);
   border-radius: 7px;
   transition: background-color 150ms ease-in-out;
@@ -9,11 +11,24 @@
   background-color: var(--hover-color);
 }
 
+.tasks__list-item.is-complete {
+  opacity: 0.5;
+}
+
+/* Tasks Empty Msg */
+.tasks__list-empty-msg {
+  background-color: unset;
+  border-radius: unset;
+}
+
+.tasks__list-empty-msg:hover {
+  background-color: unset;
+}
+
 /* Task Input Label */
 .tasks__list-label {
+  flex-grow: 1;
   display: flex;
-  flex-direction: row-reverse;
-  justify-content: flex-end;
   align-items: center;
   padding: 20px 15px;
   font-weight: 500;
@@ -21,6 +36,27 @@
 }
 
 /* Task Checkbox */
-input[type="checkbox"].tasks__list-checkbox {
+input[type="checkbox"].tasks__list-checkbox-input {
+  flex-shrink: 0;
   margin-right: 20px;
+}
+
+/* Task Text */
+input[type="text"].tasks__list-text-input {
+  width: 100%;
+  padding: 10px 0;
+  font-weight: 500;
+  background-color: unset;
+}
+
+
+.tasks__task-actions {
+  display: flex;
+  align-items: center;
+  padding: 20px 15px;
+}
+
+.tasks__update-task-button,
+.tasks__delete-task-button {
+  padding: 10px;
 }

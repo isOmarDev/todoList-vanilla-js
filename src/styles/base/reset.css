@@ -52,6 +52,7 @@ input[type=checkbox] {
   border: 1px solid lightgray;
   border-radius: 50%;
   line-height: 0;
+  cursor: pointer;
 }
 
 input[type="checkbox"]::before {
@@ -70,8 +71,8 @@ input[type="checkbox"]::before {
 }
 
 input[type="checkbox"]:checked {
-  background-color: aquamarine;
-  border-color: aquamarine;
+  background-color: #0DC472;
+  border-color: #0DC472;
 }
 
 input[type="checkbox"]:checked::before {
@@ -80,5 +81,10 @@ input[type="checkbox"]:checked::before {
 
 label,
 input[type=submit]  {
+  display: block;
+}
+
+
+svg {
   display: block;
 }

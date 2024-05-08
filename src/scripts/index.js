@@ -1,1 +1,2 @@
-import './classes/tasks.js';
+import './classes/tasksDom.js';
+import './components/AddTask.js';
