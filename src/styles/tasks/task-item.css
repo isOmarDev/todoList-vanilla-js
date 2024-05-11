@@ -5,6 +5,7 @@
   background-color: var(--secondary-color);
   border-radius: 7px;
   transition: background-color 150ms ease-in-out;
+  cursor: pointer;
 }
 
 .tasks__list-item:hover {
@@ -25,23 +26,33 @@
   background-color: unset;
 }
 
-/* Task Input Label */
-.tasks__list-label {
+/* Task Inputs */
+.tasks__task-inputs {
   flex-grow: 1;
   display: flex;
   align-items: center;
   padding: 20px 15px;
-  font-weight: 500;
+}
+
+/* Task Input Label */
+.tasks__list-label {
   cursor: pointer;
 }
 
-/* Task Checkbox */
-input[type="checkbox"].tasks__list-checkbox-input {
-  flex-shrink: 0;
+.tasks__list-label:first-child {
   margin-right: 20px;
 }
 
-/* Task Text */
+.tasks__list-label:nth-child(2) {
+  flex-grow: 1;
+}
+
+/* Task Text Input */
+input[type="checkbox"].tasks__list-checkbox-input {
+  display: block;
+}
+
+/* Task Text Input */
 input[type="text"].tasks__list-text-input {
   width: 100%;
   padding: 10px 0;
@@ -49,7 +60,7 @@ input[type="text"].tasks__list-text-input {
   background-color: unset;
 }
 
-
+/* Task Actions */
 .tasks__task-actions {
   display: flex;
   align-items: center;

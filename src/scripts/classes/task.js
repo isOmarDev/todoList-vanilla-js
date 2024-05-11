@@ -1,8 +1,8 @@
-import { uniqueId } from "../utils/generateId.js";
+import { generateUniqueId } from "../utils/generateId.js";
 
 export class Task {
   constructor(description) {
-    this.id = uniqueId();
+    this.id = generateUniqueId();
     this.description = description;
     this.completed = false;
     this.createdAt = new Date();

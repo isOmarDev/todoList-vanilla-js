@@ -9,17 +9,17 @@ export function UpdateTask() {
   const button = document.createElement("button");
   button.setAttribute("id", "update-task-button");
   button.classList.add(TASKS_UPDATE_TASK_BUTTON_CLASS);
-  button.addEventListener("click", updateTask);
+  button.addEventListener("click", handleUpdateTask);
 
   const pencilIconSvg = parseStringToDom(pencilIcon, "image/svg+xml");
   button.appendChild(pencilIconSvg);
 
-  function updateTask() {
+  function handleUpdateTask(e) {
+    e.stopPropagation();
     const inputElement = document.getElementById("task-input");
     inputElement.removeAttribute("disabled");
     inputElement.focus();
     inputElement.setSelectionRange(inputElement.value.length, inputElement.value.length);
-
   }
 
   return button;

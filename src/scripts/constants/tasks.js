@@ -9,6 +9,7 @@ export const COMPLETED_TASKS_COUNT_ID = "completed-tasks-count";
 /* Tasks Classes  */
 export const TASKS_LIST_ITEM_CLASS = "tasks__list-item";
 export const TASKS_LIST_LABEL_CLASS = "tasks__list-label";
+export const TASKS_TASK_INPUTS_CLASS = "tasks__task-inputs";
 export const TASKS_TASK_ACTION_CLASS = "tasks__task-actions";
 export const TASKS_LIST_CHECKBOX_CLASS = "tasks__list-checkbox-input";
 export const TASKS_LIST_TEXT_INPUT_CLASS = "tasks__list-text-input";

@@ -1,10 +1,12 @@
 import { tasks } from "../classes/tasks.js";
+import { CompleteTask } from "./CompleteTask.js";
 import { UpdateTask } from "./UpdateTask.js";
 import { DeleteTask } from "./DeleteTask.js";
 
 import {
   TASKS_LIST_ITEM_CLASS,
   TASKS_LIST_LABEL_CLASS,
+  TASKS_TASK_INPUTS_CLASS,
   TASKS_TASK_ACTION_CLASS,
   TASKS_LIST_CHECKBOX_CLASS,
   TASKS_LIST_TEXT_INPUT_CLASS,
@@ -23,16 +25,18 @@ export function createLiElement(task) {
   return liElement;
 }
 
-/* Create Input Label */
-export function createLabelElement() {
+/* Task Input Label */
+export function TaskInputLabel() {
   const labelElement = document.createElement("label");
   labelElement.classList.add(TASKS_LIST_LABEL_CLASS);
   return labelElement;
 }
 
-/* Create Chechbox Input */
-export function createCheckboxInputElement(isComplete) {
+/* Task Checkbox Input */
+export function TaskCheckboxInput(isComplete) {
+  const label = TaskInputLabel();
   const checkboxElement = document.createElement("input");
+
   checkboxElement.classList.add(TASKS_LIST_CHECKBOX_CLASS);
   checkboxElement.setAttribute("type", "checkbox");
 
@@ -41,21 +45,24 @@ export function createCheckboxInputElement(isComplete) {
     checkboxElement.setAttribute("disabled", true);
   }
 
-  return checkboxElement;
+  label.appendChild(checkboxElement);
+  return label;
 }
 
-/* Create Text Input */
-export function createTextInputElement(task) {
-  const textInputElement = document.createElement("input");
-  textInputElement.setAttribute("id", "task-input");
-  textInputElement.classList.add(TASKS_LIST_TEXT_INPUT_CLASS);
-  textInputElement.setAttribute("type", "text");
-  textInputElement.setAttribute("value", task.description);
-  textInputElement.setAttribute("disabled", true);
-  textInputElement.setAttribute("maxlength", "50");
+/* Task Text Input */
+export function TaskTextInput(task) {
+  const label = TaskInputLabel();
+  const inputElement = document.createElement("input");
 
-  textInputElement.addEventListener("keydown", handleKeyDown)
-  textInputElement.addEventListener("blur", handleBlur)
+  inputElement.setAttribute("id", "task-input");
+  inputElement.classList.add(TASKS_LIST_TEXT_INPUT_CLASS);
+  inputElement.setAttribute("type", "text");
+  inputElement.setAttribute("value", task.description);
+  inputElement.setAttribute("disabled", true);
+  inputElement.setAttribute("maxlength", "50");
+
+  inputElement.addEventListener("keydown", handleKeyDown)
+  inputElement.addEventListener("blur", handleBlur)
 
   function handleKeyDown(e) {
     if (e.key === "Enter" && e.target.value.trim()!== "") {
@@ -71,39 +78,39 @@ export function createTextInputElement(task) {
     e.target.disabled = true;
   }
 
-  return textInputElement;
+  label.appendChild(inputElement);
+  return label;
 }
-
-/* Create Task ACtions */
-export function createTaskActionsElement() {
-  const taskActionsElement = document.createElement("div");
-  taskActionsElement.setAttribute("id", "task-actions");
-  taskActionsElement.classList.add(TASKS_TASK_ACTION_CLASS);
-  return taskActionsElement;
-}
-
-/* Task Label Component */
-function TaskLabel(task) {
-  const taskLabelElement = createLabelElement(task.description);
-  const checkboxInputElement = createCheckboxInputElement(task.completed);
-  const textInputElement = createTextInputElement(task);
-  taskLabelElement.append(checkboxInputElement, textInputElement);
-  return taskLabelElement;
-}
-
-/* Task Actions Component */
-function TaskActions(taskId) {
-  const taskActionElement = createTaskActionsElement();
-  taskActionElement.append(UpdateTask(), DeleteTask(taskId));
-  return taskActionElement
-}
-
 
 /* Task Item Component */
 export function TaskItem(task) {
   const liElement = createLiElement(task);
-  liElement.append(TaskLabel(task), TaskActions(task.id));
+  liElement.append(TaskInputs(task), TaskActions(task));
   return liElement;
+}
+
+/* Task Inputs Component */
+function TaskInputs(task) {
+  const container = document.createElement("div");
+  container.setAttribute("id", "task-inputs");
+  container.classList.add(TASKS_TASK_INPUTS_CLASS);
+  container.append(CompleteTask(task), TaskTextInput(task));
+  return container;
+}
+
+/* Task Actions Component */
+function TaskActions(task) {
+  const container = document.createElement("div");
+  container.setAttribute("id", "task-actions");
+  container.classList.add(TASKS_TASK_ACTION_CLASS);
+
+  if (!task.completed) {
+    container.appendChild(UpdateTask());
+  }
+
+  container.appendChild(DeleteTask(task));
+
+  return container;
 }
 
 /* Tass Empty Message Component */

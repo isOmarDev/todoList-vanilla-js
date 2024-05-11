@@ -34,10 +34,11 @@ class Tasks {
     this.saveToLocalStorage();
   }
 
-  update(taskId, description) {
+  update(taskId, description, completed = false) {
     const task = this.tasks.find(task => task.id === taskId);
     if (task) {
       task.description = description;
+      task.completed = completed;
       this.saveToLocalStorage();
     }
   }

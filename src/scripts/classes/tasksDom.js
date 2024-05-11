@@ -49,7 +49,7 @@ export class TasksDom {
   appendTasksToFragment(tasks) {
     const listFragment = document.createDocumentFragment();
     tasks.forEach((task) => {
-      listFragment.appendChild(TaskItem(task));
+      listFragment.appendChild(new TaskItem(task));
     });
     return listFragment;
   }
